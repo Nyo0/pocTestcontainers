@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CleanArchApplication {
+public class PocTestContainersApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CleanArchApplication.class, args);
+		SpringApplication.run(PocTestContainersApplication.class, args);
 
 	}
 
