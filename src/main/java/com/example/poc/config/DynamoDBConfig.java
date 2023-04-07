@@ -9,6 +9,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,9 +22,14 @@ public class DynamoDBConfig {
     @Value("${amazon.aws.accesskey}")
     private String amazonAWSAccessKey;
 
-
     @Value("${amazon.aws.secretkey}")
     private String amazonAWSSecretKey;
+
+    @Value("${amazon.service.endpoint}")
+    private String serviceEndpoint;
+
+    @Value("${amazon.region}")
+    private String region;
 
     public AWSCredentialsProvider amazonAWSCredentialsProvider() {
         return new AWSStaticCredentialsProvider(amazonAWSCredentials());
@@ -46,11 +52,10 @@ public class DynamoDBConfig {
         return new DynamoDBMapper(amazonDynamoDB, config);
     }
 
-
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
         return AmazonDynamoDBClientBuilder.standard().withCredentials(amazonAWSCredentialsProvider())
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8000","us-west-2"))
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(serviceEndpoint,region))
                 .build();
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class TransactionRepository {
+public class TransactionRepository  {
 
     @Autowired
     private DynamoDBMapper dynamoDBMapper;

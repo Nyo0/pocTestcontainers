@@ -12,6 +12,6 @@ public class ConverteDolarImpl implements ConverteDolar {
 
     @Override
     public BigDecimal converteValor(BigDecimal valor) {
-        return valor.multiply(dolar);
+        return valor.multiply(dolar).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 }

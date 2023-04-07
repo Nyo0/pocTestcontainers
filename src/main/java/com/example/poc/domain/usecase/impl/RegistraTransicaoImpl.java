@@ -28,7 +28,6 @@ public class RegistraTransicaoImpl implements RegistraTransicao {
             transicao.getCarteira().setSaldo(converteDolar.converteValor(transactionRequest.getValor()));
         }
         transactionRepository.save(transicao);
-
     }
     public Transicao buildTransicao(TransactionRequest transactionRequest){
       return Transicao.builder()
